@@ -1,0 +1,3 @@
+[submodule "readmetor"]
+	path = readmetor
+	url = git@github.com:noSleepOwl/README.git
