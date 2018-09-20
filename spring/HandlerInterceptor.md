@@ -55,7 +55,7 @@ public class ErrorInterceptor implements HandlerInterceptor {
 
 ```
 
-###### 拦截器的配置
+#### 拦截器的配置
 
 ```java
 @Configuration

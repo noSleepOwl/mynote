@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>测试vuejs 使用</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>app_1</h1>
+        渲染式的声明 {{ message }}
+    </div>
+    <hr>
+    <div id="app_2">
+        <h1>app_2</h1>
+        <p>{{ foo }}</p>
+        <div>
+            除了数据属性，Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来。例如：
+        </div>
+        <button v-on:click="foo='change It'">change It</button>
+    </div>
+
+    <script src="./test.js"></script>
+</body>
+
+
+</html>
