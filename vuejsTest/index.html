@@ -6,7 +6,14 @@
     <title>测试vuejs 使用</title>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <style>
+        p.red,
+        h1.red {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,14 +23,57 @@
     </div>
     <hr>
     <div id="app_2">
-        <h1>app_2</h1>
-        <p>{{ foo }}</p>
+        <button @click="foo+=1">change foo(本按钮使用的是 v-on:click 指令绑定的click事件)</button>
+        <h1 v-bind:class="{red:isRed}">app_2</h1>
+        <h5>由属性计算方法进行计算并返回,省略了在html中模板方法的设定{{msage}}==>调用计算方法获取的结果{{reverMsage}}类似的还有计算方法{{reverMsage()}}</h5>
+        <div>
+            <h5>
+                方法, 和计算属性的区别
+            </h5>
+            <button @click="now">初始化的时候已经缓存了{{now}}</button>
+            <button @click="getNow()">初始化的时候已经缓存了{{getNow()}}</button>
+            <button @click="fullName=100">调用set方法设置 foo为100</button>
+        </div>
+
+        <h1>foo={{ foo }}</h1>
+        <h1 v-once>一次性绑定(v-once)..foo={{ foo }}</h1>
+        <div>
+            <p>可以在"{{}}"中使用js的表达式</p>
+            <p>foo+1={{foo+1}}</p>
+            <p>foo%2==0?'YES':'NO' ={{foo%2 == 0?'YES':'NO'}}</p>
+            <p v-bind:attr-id="'list-'+foo">rawHtml.split(/\s*/g).join('-') ={{rawHtml.split(/\s*/g).join('-')}}</p>
+            <hr>
+            <p>var a = 1 for循环之类并不会进行渲染和识别,并会报错</p>
+        </div>
+        <hr>
+        <div>
+            <div>普通输出:{{rawHtml}}</div>
+            <div>使用v-html输出:<span v-html="rawHtml"></span></div>
+        </div>
+        <hr>
         <div>
             除了数据属性，Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来。例如：
+            <div>
+                <div>vm.$data == data</div>
+                <div>vm.$el === document.getElementById("app_2")</div>
+                <div>vm.$watch('a',function(newValue,oldValue){</div>
+                <div> })</div>
+            </div>
         </div>
-        <button v-on:click="foo='change It'">change It</button>
-    </div>
+        <hr>
+        <div>
+            <h5>指令</h5>
+            指令的预期值是单个的javascript表达式,v-for除外
+            <p class="red" v-if="foo%2==0">v-if 演示,if foo%2==0 本条进行展示</p>
+            <p>v-on 缩写形式 @click v-bind 缩写形式:href </p>
+        </div>
+        <hr>
 
+        <button v-bind:disabled="isButtonDisable" v-bind:data-id="foo">v-bind进行数据判断 禁用按钮如果 isButtonDisabled 的值是
+            null、undefined 或 false，则
+            disabled 属性不会被包含在渲染出来的 元素中,如果值并非为上述类型,则属可以为元素赋值属性(本按钮的data-id属性 绑定了 foo){{foo}}</button>
+    </div>
+    <input v-model="foo">
     <script src="./test.js"></script>
 </body>
 
